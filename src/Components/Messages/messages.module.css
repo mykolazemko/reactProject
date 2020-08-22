@@ -1,0 +1,19 @@
+
+.dialogContainer{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+.dialodUsers{
+    background-color: #99e;
+}
+.dialog a{
+    color: #f00;
+    text-decoration: none;
+}
+.userMessages{
+    background-color: #bbe;
+    margin-left: 10px;
+}
+.message{
+    color: #00f;
+}
