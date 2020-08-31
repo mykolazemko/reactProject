@@ -1,31 +1,29 @@
 import React from 'react'
 import style from './profilePosts.module.css'
 
-let postText = [
-    {id: 1, text: 'Post_1'},
-    {id: 2, text: 'Post_2'},
-    {id: 3, text: 'Post_3'},
-    {id: 4, text: 'Post_4'},
-    {id: 5, text: 'Post_5'}
 
-
-]
 
 const Post = (props) => {
     return(
-        <div className={style.post}>{props.content}</div>
-    )
-}
+        <div className={style.post}>{props.content}
+        </div>
+        )
+    }
 
-const ProfilePosts = () => {
-    return(
-        <div>
+    let newPostElement = React.createRef();
+
+    let addPost = () => {
+        let text = newPostElement.current.value;
+        alert( text )
+    }
+    
+    const ProfilePosts = (props) => {
+        let postData = props.state.profilePage.postText.map(post => <Post content={post.text}/>);
+        return(
             <div>
-                <Post content='Post_1'/>
-                <Post content='Post_2'/>
-                <Post content='Post_3'/>
-                <Post content='Post_4'/>
-            </div>
+            <textarea ref = {newPostElement}></textarea>
+            <button onClick = { addPost }>Add New Post</button>
+            {postData}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarItem from './SidebarItem'
+import SidebarItem from './SidebarItem/SidebarItem'
 
 const Sidebar = () => {
     return (
@@ -8,7 +8,7 @@ const Sidebar = () => {
             <SidebarItem path='/messages' item='Messages' />
             <SidebarItem path='/music' item='Music' />
             <SidebarItem path='/news' item='News' />
-            <SidebarItem path='' item='Lorem Ipsum' />
+            <SidebarItem path='friends' item='Friends' />
         </div>
     )
 }
