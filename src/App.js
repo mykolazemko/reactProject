@@ -12,8 +12,14 @@ import './App.css';
 
 
 function App(props) {
-  const profile = () => <Profile state = {props.state}/>;
-  const messages = () => <Messages state = {props.state}/>;
+  const profile = () => <Profile
+    state = {props.state}
+    addPost = {props.addPost}
+    updateNewPostText = {props.updateNewPostText}/>
+  const messages = () => <Messages 
+    state = {props.state}
+    updateMessageText = {props.updateMessageText}
+    sendMessage = {props.sendMessage}/>;
   const music = () => <Music/>;
   const news = () => <News/>;
   const friends = () => <Friends state = {props.state}/>;
@@ -31,7 +37,7 @@ function App(props) {
         </div>
       </div>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;

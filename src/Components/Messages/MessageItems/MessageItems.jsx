@@ -8,21 +8,27 @@ const Message = (props) => {
         )
     }
     
-    let newMessage = React.createRef();
-    let sendMessage = () => {
-        let msgText = newMessage.current.value;
-        alert(msgText)
-    }
+    const MessageList = (props) => {
+        
+        let newMessage = React.createRef();
+    
+        let sendMessage = () => {
+            props.sendMessage()
+        }
+    
+        let onMessageChange = () => {
+            let msgText = newMessage.current.value;
+            props.updateMessageText(msgText)
+        }
 
-const MessageList = (props) => {
-    let messageItem = props.state.messagesPage.messageText.map(message => <Message text={message.text}/>)
-    return(
-        <div className={style.userMessages}>
-            {messageItem}   
-            <textarea ref={newMessage}/>
-            <button onClick={ sendMessage }>Send</button>
-        </div>       
-    )
-}
+        let messageItem = props.state.messagesPage.messageText.map(message => <Message text={message.text}/>)
+        return(
+            <div className={style.userMessages}>
+                {messageItem}   
+                <textarea onChange={onMessageChange} ref={newMessage} value={props.newMessageText}/>
+                <button onClick={ sendMessage }>Send</button>
+            </div>       
+        )
+    }
 
 export default MessageList

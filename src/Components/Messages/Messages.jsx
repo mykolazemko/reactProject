@@ -9,7 +9,11 @@ const Messages = (props) => {
     return(
         <div className={style.dialogContainer}>
             <Dialogs state = {props.state}/>
-            <MessageItems state = {props.state}/>
+            <MessageItems 
+                state = {props.state}
+                newMessageText = {props.state.messagesPage.newMessageText}
+                updateMessageText = {props.updateMessageText}
+                sendMessage = {props.sendMessage}/>
         </div>
     )
 }
