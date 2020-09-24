@@ -10,16 +10,13 @@ import {Route, BrowserRouter} from 'react-router-dom';
 import './App.css';
 
 
-
 function App(props) {
   const profile = () => <Profile
     state = {props.state}
-    addPost = {props.addPost}
-    updateNewPostText = {props.updateNewPostText}/>
+    dispatch = {props.dispatch}/>
   const messages = () => <Messages 
     state = {props.state}
-    updateMessageText = {props.updateMessageText}
-    sendMessage = {props.sendMessage}/>;
+    dispatch = {props.dispatch}/>
   const music = () => <Music/>;
   const news = () => <News/>;
   const friends = () => <Friends state = {props.state}/>;

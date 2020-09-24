@@ -1,5 +1,8 @@
-import { render } from '../render'
-  let state = {
+import profileReduser from './profileReduser';
+import messagesReduser from './messagesReduser';
+
+let store = {
+  _state: {
     profilePage : {
       postText : [
           {id: 1, text: 'Post_1'},
@@ -10,7 +13,6 @@ import { render } from '../render'
         ],
         newPostText: ''
     },
-
     messagesPage : {
       messageText : [
         {id: 1, text: 'message1'},
@@ -19,7 +21,7 @@ import { render } from '../render'
         {id: 4, text: 'message4'},
         {id: 5, text: 'message5'}
       ],
-    newMessageText: '',
+      newMessageText: '',
       dialogMembers : [
         {id: 1, name: 'User1'},
         {id: 2, name: 'User2'},
@@ -28,8 +30,6 @@ import { render } from '../render'
         {id: 5, name: 'User5'},
       ],
     },
-
-
     friendsPage : {
       friendsList : [
         {id: 1, name: 'Friend_1',},
@@ -38,32 +38,27 @@ import { render } from '../render'
         {id: 4, name: 'Friend_4',},
         {id: 5, name: 'Friend_5',},
       ]
-    }
-    
+    }    
+  },
+  _callSubscriber() {
+    console.log('.')
+  },
+  
+  getState() {
+    return this._state
+  },
+  subscriber (observer) {
+    this._callSubscriber = observer;
+  },
+  dispatch(action) {
+    this._state.profilePage = profileReduser(this._state.profilePage, action)
+    this._state.messagesPage = messagesReduser(this._state.messagesPage, action)
+    this._callSubscriber(this._state)    
   }
+}
 
-  export let addPost = () => {
-    let newPost = {id: 6, text: state.profilePage.newPostText}
-    state.profilePage.postText.push(newPost);
-    state.profilePage.newPostText = "";
-    render(state)
-  }
+ 
 
-  export let updateNewPostText = (text) => {
-    state.profilePage.newPostText = text
-    render(state)
-  }
 
-  export let sendMessage = () => {
-    let message = {id: 6, text: state.messagesPage.newMessageText}
-    state.messagesPage.messageText.push(message);
-    state.messagesPage.newMessageText = "";
-    render(state)
-  }
-
-  export let updateMessageText = (text) => {
-    state.messagesPage.newMessageText = text
-    render(state)
-  }
-
-  export default state;
+export default store;
+window.store = store;

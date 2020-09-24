@@ -1,5 +1,6 @@
 import React from 'react'
 import style from '../messages.module.css'
+import {sendMessageActionCreator, updateMessageTextActionCreator} from '../../../Redux/messagesReduser'
 
 
 const Message = (props) => {
@@ -13,15 +14,15 @@ const Message = (props) => {
         let newMessage = React.createRef();
     
         let sendMessage = () => {
-            props.sendMessage()
+           //props.dispatch(sendMessageActionCreator())
+           props.sendMessage()
         }
-    
         let onMessageChange = () => {
             let msgText = newMessage.current.value;
-            props.updateMessageText(msgText)
+            // props.dispatch(updateMessageTextActionCreator(msgText))
+            props.onMessageChange(msgText)
         }
-
-        let messageItem = props.state.messagesPage.messageText.map(message => <Message text={message.text}/>)
+        let messageItem = props.messageText.map(message => <Message text={message.text}/>)
         return(
             <div className={style.userMessages}>
                 {messageItem}   

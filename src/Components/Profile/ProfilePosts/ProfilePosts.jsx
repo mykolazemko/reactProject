@@ -1,7 +1,6 @@
 import React from 'react'
 import style from './profilePosts.module.css'
-
-
+import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../Redux/profileReduser'
 
 const Post = (props) => {
     return(
@@ -13,19 +12,19 @@ const Post = (props) => {
     const ProfilePosts = (props) => {
         let newPostElement = React.createRef();
 
-        let addPost = () => {
+        let onAddPost = () => {
             props.addPost()
         }
 
         let onPostChange = () => {
             let text = newPostElement.current.value;
-            props.updateNewPostText(text)
+            props.updateNewPostText(text);
         }
-        let postData = props.state.profilePage.postText.map(post => <Post content={post.text}/>);
+        let postData = props.postText.map(post => <Post content={post.text}/>);
         return(
         <div>
             <textarea onChange={onPostChange} ref = {newPostElement} value={props.newPostText}/>
-            <button onClick = { addPost }>Add New Post</button>
+            <button onClick = { onAddPost }>Add New Post</button>
             {postData}
         </div>
     )

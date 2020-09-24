@@ -8,8 +8,7 @@ const Dialog = (props) => {
     return(
         <div className={style.dialog}><NavLink to={path}>{props.name}</NavLink></div>
         )
-    }
-    
+    }    
     
     const Dialogs = (props) => {
         let dialogs = props.state.messagesPage.dialogMembers.map(dialog => <Dialog id={dialog.id} name={dialog.name}/>);
